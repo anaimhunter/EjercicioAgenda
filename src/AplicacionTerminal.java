@@ -52,7 +52,7 @@ public class AplicacionTerminal
         }while(opcion!="terminar");
     }
 
-agregar
+
 
     private void agregar(Scanner entrada)
     {
