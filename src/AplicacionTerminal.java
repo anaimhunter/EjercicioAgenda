@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -49,6 +50,27 @@ public class AplicacionTerminal
                 System.out.println(ex.getMessage());
                 opcion ="";
             }
+            catch(InputMismatchException ex)
+            {
+                System.out.println("El numero de telefono debe tener digitos unicamente ");
+                opcion ="";
+            }
+            /*
+            catch (StringIndexOutOfBoundsException ex)
+            {
+                System.out.println(ex.getMessage());
+                opcion ="";
+            }
+            catch(RuntimeException ex)
+            {
+                System.out.println(ex.getMessage());
+                opcion ="";
+            }
+            catch(Exception ex)
+            {
+                System.out.println(ex.getMessage());
+                opcion ="";
+            }*/
         }while(opcion!="terminar");
     }
 
