@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -32,17 +34,24 @@ public class AplicacionTerminal
         do
         {
             try {
-                System.out.println("Opciones: agregar - guardar  - imprimir -terminar");
+                System.out.println("Opciones: agregar -cargar - eliminar - guardar  - imprimir -terminar");
 
                 opcion = entrada.nextLine();//Va a leer una palabra que va a escribir
                 switch (opcion) {
                     case "agregar":
                         agregar(entrada);
                         break;
+                    case "cargar":
+                        cargar(entrada);
+                        break;
+                    case "eliminar":
+                        eliminar(entrada);
+                        break;
                     case "guardar":
                         guardar(entrada);
 
                         break;
+
                     case "imprimir":
                         agenda.imprimerTodo();
                         break;
@@ -56,6 +65,11 @@ public class AplicacionTerminal
             catch(InputMismatchException ex)
             {
                 System.out.println("El numero de telefono debe tener digitos unicamente ");
+                opcion ="";
+            }
+            catch(FileNotFoundException e)
+            {
+                System.out.println("El archivo no existe");
                 opcion ="";
             }
             catch (IOException e)
@@ -83,6 +97,19 @@ public class AplicacionTerminal
         }while(opcion!="terminar");
     }
 
+    private void eliminar(Scanner entrada)
+    {
+        System.out.println("Telefono del contacto a eliminar");
+        long telEliminar = entrada.nextLong();
+        agenda.eliminarContacto(telEliminar);
+    }
+
+    private void cargar(Scanner entrada) throws FileNotFoundException
+    {
+        System.out.println("Nombre del archivo");
+        String nomArchivo = entrada.nextLine();
+        agenda.cargar(nomArchivo);
+    }
 
 
     private void agregar(Scanner entrada)
