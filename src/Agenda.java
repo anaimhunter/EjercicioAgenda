@@ -100,13 +100,25 @@ public class Agenda {
         //1. next() - regresa el siguiente elemnto de la coleccion
         //2. hasNext() - verifica si todavia hay elemntos en la coleccion
         //3. remove() - elimina el elemento actual de la coleccion.
+        boolean eliminado = false;
         while(it.hasNext())
         {
             Contacto c =it.next();
             if(telEliminar == c.dimeTel())
             {
                 it.remove();
+                eliminado = true;
             }
+
         }
+        if(!eliminado)//no se elimino
+        {
+            throw new ExcepcionContacto("El contacto no existe en la agenda.");
+        }
+    }
+
+    public int numContactos()
+    {
+        return contactos.size();
     }
 }

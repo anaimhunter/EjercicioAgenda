@@ -34,7 +34,7 @@ public class AplicacionTerminal
         do
         {
             try {
-                System.out.println("Opciones: agregar -cargar - eliminar - guardar  - imprimir -terminar");
+                System.out.println("Opciones: agregar - cargar -contar - eliminar - guardar  - imprimir -terminar");
 
                 opcion = entrada.nextLine();//Va a leer una palabra que va a escribir
                 switch (opcion) {
@@ -43,6 +43,9 @@ public class AplicacionTerminal
                         break;
                     case "cargar":
                         cargar(entrada);
+                        break;
+                    case "contar":
+                        contar();
                         break;
                     case "eliminar":
                         eliminar(entrada);
@@ -55,6 +58,7 @@ public class AplicacionTerminal
                     case "imprimir":
                         agenda.imprimerTodo();
                         break;
+
                 }
             }
             catch(IllegalArgumentException ex)
@@ -78,6 +82,11 @@ public class AplicacionTerminal
                 System.out.println("No es valido");
                 opcion ="";
             }
+            catch (ExcepcionContacto ex)
+            {
+                System.out.println(ex.getMessage());
+                opcion ="";
+            }
             /*
             catch (StringIndexOutOfBoundsException ex)
             {
@@ -95,6 +104,11 @@ public class AplicacionTerminal
                 opcion ="";
             }*/
         }while(opcion!="terminar");
+    }
+
+    private void contar()
+    {
+        System.out.println("La agenda tiene: "+ agenda.numContactos()+" contactos.");
     }
 
     private void eliminar(Scanner entrada)
@@ -130,7 +144,7 @@ public class AplicacionTerminal
     public static void main(String[] args)
     {
         AplicacionTerminal aplicacion = new AplicacionTerminal();
-        aplicacion.demo();
+        //aplicacion.demo();
         aplicacion.entradaUsuario();
 
     }
